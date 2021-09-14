@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pickle
+*.pkl
+
+# file
+finnhub_ETL.ipynb
+Nothing.ipynb
+scratch.py
+
