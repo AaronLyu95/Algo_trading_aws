@@ -20,7 +20,7 @@ def etl_first(type, start, end):
         twilio_utils.twilio_message(error_message)
     finally:
         final_message = f"Your {type} ETL process ended"
-        twilio_utils.twilio_message(final_message)
+        # twilio_utils.twilio_message(final_message)
 
 
 
@@ -43,10 +43,10 @@ if __name__ == "__main__":
     #
     start_time = etl_utils.get_current_time()
     message = f"Your ETL process begins at {start_time}"
-    twilio_utils.twilio_message(message)
+    # twilio_utils.twilio_message(message)
     etl_first('daily', sys.argv[1], sys.argv[2])
     etl_first('intraday', sys.argv[3], sys.argv[4])
     end_time = etl_utils.get_current_time()
-    cong_message = f"Congratulations! Your ETL process begins at {end_time}"
-    twilio_utils.twilio_message(cong_message)
+    cong_message = f"Congratulations! Your ETL process ends at {end_time}"
+    # twilio_utils.twilio_message(cong_message)
 

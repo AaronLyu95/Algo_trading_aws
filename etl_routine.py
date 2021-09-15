@@ -21,7 +21,7 @@ def etl_multi():
             twilio_utils.twilio_message(error_message)
         finally:
             final_message = f"Your {type} ETL process ended"
-            twilio_utils.twilio_message(final_message)
+            # twilio_utils.twilio_message(final_message)
 
 
 
