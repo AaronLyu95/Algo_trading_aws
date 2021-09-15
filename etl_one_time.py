@@ -6,6 +6,7 @@ from utils.db_utils import conn_engine
 import utils.etl_utils
 import sys
 import os
+import traceback
 
 
 
@@ -15,6 +16,7 @@ def etl_first(type, start, end):
     except Exception as error:
         error_message = f"Your {type} ETL process meets an error: {error}"
         print(error_message)
+        print(traceback.format_exc())
         twilio_utils.twilio_message(error_message)
     finally:
         final_message = f"Your {type} ETL process ended"
@@ -46,4 +48,5 @@ if __name__ == "__main__":
     etl_first('intraday', sys.argv[3], sys.argv[4])
     end_time = etl_utils.get_current_time()
     cong_message = f"Congratulations! Your ETL process begins at {end_time}"
+    twilio_utils.twilio_message(cong_message)
 

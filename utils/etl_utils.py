@@ -38,16 +38,17 @@ def get_stock_candles(symbol, interval, start, end):
         while start_unix < end_unix:
             time.sleep(2.1)
             resp = finn.stock_candles(symbol, interval, start_unix, end_unix)
+            if resp['s'] == 'no_data':
+                break
             resp = pd.DataFrame(resp)
-            no_data_index = resp[resp['s'] == 'no_data'].index
-            resp.drop(no_data_index, inplace=True)
             resp['tt'] = pd.to_datetime(resp['t'], unit='s', utc=True)
             resp['symbol'] = symbol
+            resp['v'] = resp['v'].astype('int64')
             stock_data = pd.concat(
                 [pd.DataFrame(resp), stock_data],
                 ignore_index=True,
             )
-            end_unix = resp['t'][0] - 1
+            end_unix = resp['t'].min() - 1
 
     return stock_data
 
