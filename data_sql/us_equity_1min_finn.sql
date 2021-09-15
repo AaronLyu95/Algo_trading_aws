@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS public.us_equity_1min_finn(
     status          varchar(5),
     time_stamp_unix bigint,
     volume          integer,
-    security_symbol varchar(7),
-    time_stamp_nyc  timestamp
+    time_stamp_nyc  timestamp,
+    security_symbol varchar(7)
     );

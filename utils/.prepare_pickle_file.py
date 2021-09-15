@@ -2,13 +2,15 @@ import os
 import pickle
 
 file = 'algo_db_rds.pkl'
-config = {'db': {'user': 'postgres',
-                 'password': 'wasddddddii'
+config = {'db': {'user': 'xxxxxxxxxxxxxxxxxx',
+                 'password': 'xxxxxxxxxxxxxxxxxxxxx'
                  },
-          'finnhub': {'api': 'c4m0o2iad3icjh0e9gd0'
+          'finnhub': {'api': 'xxxxxxxxxxxxxxxxxxxxxx'
                       },
-          'twilio': {'sid': 'AC682642684bf969ec88020bbed473e381',
-                     'token': 'b46895276babfaebf376c557d290ea81'}
+          'twilio': {'sid': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                     'token': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                     'twilio_phone_number': '+12562035669',
+                     'my_phone_number': ''},
           }
 with open(file, 'wb') as f:
     pickle.dump(config, f)

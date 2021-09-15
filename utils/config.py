@@ -28,3 +28,7 @@ finnhub_config = credentials['finnhub']
 
 twilio_config = credentials['twilio']
 
+table_config = {
+    'daily': 'us_equity_daily_finn',
+    'intraday': 'us_equity_1min_finn'
+}
