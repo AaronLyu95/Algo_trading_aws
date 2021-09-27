@@ -1,7 +1,4 @@
-conda activate base
-python ~/Projects/etl_routine.py
-conda deactivate
-
+/root/miniconda3/bin/python /home/ubuntu/Algo_trading/ETL/etl_routine.py
 
 
 

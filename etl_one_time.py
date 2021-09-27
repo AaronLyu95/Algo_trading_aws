@@ -7,7 +7,8 @@ import utils.etl_utils
 import sys
 import os
 import traceback
-
+from utils.gmail_utils import send_message_gmail
+from utils.log_utils import etl_log
 
 
 def etl_first(type, start, end):
@@ -17,9 +18,11 @@ def etl_first(type, start, end):
         error_message = f"Your {type} ETL process meets an error: {error}"
         print(error_message)
         print(traceback.format_exc())
-        twilio_utils.twilio_message(error_message)
+        etl_log(error_message, 'ERROR')
+        # twilio_utils.twilio_message(error_message)
     finally:
         final_message = f"Your {type} ETL process ended"
+        etl_log(final_message, 'INFO')
         # twilio_utils.twilio_message(final_message)
 
 
@@ -42,11 +45,15 @@ if __name__ == "__main__":
                 cursor.execute(f.read())
     #
     start_time = etl_utils.get_current_time()
-    message = f"Your ETL process begins at {start_time}"
+    message = f"Your initial ETL process begins at {start_time}"
+    send_message_gmail('Initial ETL begins', message)
+    etl_log(message, 'INFO')
     # twilio_utils.twilio_message(message)
     etl_first('daily', sys.argv[1], sys.argv[2])
     etl_first('intraday', sys.argv[3], sys.argv[4])
     end_time = etl_utils.get_current_time()
-    cong_message = f"Congratulations! Your ETL process ends at {end_time}"
+    cong_message = f"Congratulations! Your initial ETL process successfully finished at {end_time}"
+    send_message_gmail('Initial ETL ends', cong_message)
+    etl_log(cong_message, 'INFO')
     # twilio_utils.twilio_message(cong_message)
 

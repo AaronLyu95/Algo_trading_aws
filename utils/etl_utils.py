@@ -2,7 +2,7 @@ import pandas as pd
 import time
 from utils.config import table_config
 from utils.finnhub_utils import finnhub_conn
-from utils.finnhub_utils import get_sp100_symbols
+from utils.finnhub_utils import get_sp100_symbols, get_sp500_symbols, sg_symbols
 from utils.db_utils import exec_query
 from utils.db_utils import conn_engine
 from utils.finnhub_utils import unix_ts_to_datetime, datetime_to_unix_ts
@@ -56,8 +56,8 @@ def get_stock_candles(symbol, interval, start, end):
 def get_daily_data(start, end):
     daily_data = pd.DataFrame(
         columns=['c', 'h', 'l', 'o', 's', 't', 'v', 'tt', 'symbol'])
-    sp100_symbols = get_sp100_symbols()
-    for symbol in sp100_symbols:
+    stock_symbols = sg_symbols()
+    for symbol in stock_symbols:
         daily_stock = get_stock_candles(symbol, 'D', start, end)
         daily_data = pd.concat(
             [daily_stock, daily_data],
@@ -69,8 +69,8 @@ def get_daily_data(start, end):
 def get_intraday_data(start, end):
     intraday_data = pd.DataFrame(
         columns=['c', 'h', 'l', 'o', 's', 't', 'v', 'tt', 'symbol'])
-    sp100_symbols = get_sp100_symbols()
-    for symbol in sp100_symbols:
+    stock_symbols = sg_symbols()
+    for symbol in stock_symbols:
         intraday_stock = get_stock_candles(symbol, '1', start, end)
         intraday_data = pd.concat(
             [intraday_stock, intraday_data],
