@@ -41,7 +41,7 @@ def get_stock_candles(symbol, interval, start, end):
             if resp['s'] == 'no_data':
                 break
             resp = pd.DataFrame(resp)
-            resp['tt'] = pd.to_datetime(resp['t'], unit='s', utc=True)
+            resp['tt'] = pd.to_datetime(resp['t'], unit='s', utc=True).dt.tz_convert(tz='America/New_York')
             resp['symbol'] = symbol
             resp['v'] = resp['v'].astype('int64')
             stock_data = pd.concat(

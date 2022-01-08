@@ -24,12 +24,12 @@ def etl_multi(type):
         error_message = f"Your {type} ETL process occurs an error: {error}"
         send_message_gmail(f"{type} ETL error", error_message)
         etl_log(error_message, 'ERROR')
-        twilio_utils.twilio_message(error_message)
+        # twilio_utils.twilio_message(error_message)
     finally:
         final_message = f"Your {type} ETL process begun at {start_t} and successfully finished at {end_t}"
         send_message_gmail(f"{type} ETL", final_message)
         etl_log(final_message, 'INFO')
-        twilio_utils.twilio_message(final_message)
+        # twilio_utils.twilio_message(final_message)
 
 
 def etl_multi_thread():
@@ -47,7 +47,8 @@ def etl_multi_thread():
                 print(task.result())
     except Exception as error:
         thread_error_message = f"Your multi thread tasks occurs and error: {error}"
-        send_message_gmail(f"ETL multi thread error", thread_error_message)
+        etl_log(thread_error_message, 'ERROR')
+        # send_message_gmail(f"ETL multi thread error", thread_error_message)
 
 
 
@@ -59,7 +60,9 @@ if __name__ == "__main__":
     message = f"Your ETL process begins at {start_time}"
     send_message_gmail('ETL begins', message)
     # twilio_utils.twilio_message(message)
-    etl_multi_thread()
+    etl_multi('daily')
+    time.sleep(2.1)
+    etl_multi('intraday')
     end_time = etl_utils.get_current_time()
     cong_message = f"Congratulations! Your today ETL process successfully finished at {end_time}"
     send_message_gmail('ETL ends', cong_message)

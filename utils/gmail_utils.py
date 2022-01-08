@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 from email.mime.text import MIMEText
 from googleapiclient.errors import HttpError
 import base64
-from utils.config import my_gmail_address
+from utils.config import from_gmail_address, to_gmail_address
 
 
 def gmail_service():
@@ -83,11 +83,14 @@ def send_message(service, user_id, message):
 
 def send_message_gmail(subject, message_text):
     service = gmail_service()
-    message = create_message(my_gmail_address,
-                             my_gmail_address,
+    message = create_message(from_gmail_address,
+                             to_gmail_address,
                              subject,
                              message_text)
     return  send_message(service, 'me', message)
+
+
+
 
 
 
