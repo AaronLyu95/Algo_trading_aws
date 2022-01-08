@@ -32,3 +32,5 @@ table_config = {
     'daily': 'us_equity_daily_finn',
     'intraday': 'us_equity_1min_finn'
 }
+
+my_gmail_address = parser['gmail']['address']

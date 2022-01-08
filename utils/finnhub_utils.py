@@ -3,6 +3,7 @@ import pandas as pd
 from utils.config import finnhub_config
 import datetime
 import dateutil
+import os
 
 
 
@@ -40,6 +41,14 @@ def get_sp100_symbols():
     df = pd.read_html('https://en.wikipedia.org/wiki/S%26P_100')
     symbols = df[2]['Symbol'].values.tolist()
     return symbols
+
+
+def sg_symbols():
+    cur_path = os.path.dirname(os.path.realpath(__file__))
+    file = os.path.join(cur_path, '..', 'stock_data', 'securities_sg4.csv')
+    df = pd.read_csv(file, header=None)
+    stock_list = df[0].values.tolist()
+    return stock_list
 
 
 

@@ -131,7 +131,7 @@ dmypy.json
 # pickle
 *.pkl
 
-# file
+# files
 finnhub_ETL.ipynb
 Nothing.ipynb
 scratch.py
@@ -140,6 +140,10 @@ scratch.ipynb
 .prepare_pickle_file_aaron.py
 symbol_list.py
 algo-ds-ec2-aaron.pem
+Algo_trading_alert.json
+gmail_token.json
+config.ini
+
 
 
 
