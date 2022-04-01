@@ -69,7 +69,7 @@ Create daily data table on database.
 ## Automation
 In order to automatically start ETL process every day, we use crontab in linux to run \
 etl_routine.sh at 22:00EST by system itself. \
-The contab command is 0 22 * * * bash 
+The contab command is 0 22 * * * bash /home/ubuntu/Algo_trading/ETL/etl_routine.sh
 
 
 
